@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--task","normal", "--image_path","/home/levin/workspace/nerf/mini-omnidata/assets/image.png","--plt_vis","--output_npy","depth_npy","--output_vis","depth_vis"]
+            "args": ["--task","depth", "--image_path","/media/levin/DATA/zf/workspace/data/kitti/kitti_mot/training/image_02/0006/000000.png","--plt_vis","--output_npy","depth_npy","--output_vis","depth_vis"]
         }
     ]
 }

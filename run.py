@@ -45,7 +45,7 @@ def colorize(image, cmap="turbo"):
     if c == 1:  # depth
         image = image.squeeze()
         image_normalized = (image - np.min(image)) / (np.max(image) - np.min(image))
-        cmap = plt.get_cmap(cmap)
+        cmap = plt.get_cmap("gray")
         image_colorized = cmap(image_normalized)[:, :, :3]
         return np.uint8(image_colorized * 255)
     else:
@@ -97,9 +97,9 @@ class OmnidataModel:
 
         if h_net != h_raw or w_net != w_raw:
             resizer = Resize(
-                h_net,
                 w_net,
-                resize_target=None,
+                h_net,
+                resize_target=False,
                 keep_aspect_ratio=True,
                 ensure_multiple_of=self.patch_size,
                 resize_method="minimal",
