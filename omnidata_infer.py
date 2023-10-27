@@ -107,7 +107,23 @@ class App(BaseInfer):
              
         img[mask] = 0
         return
+    def get_depth_image(self, image_path, vis = False):
+        cam_name, frame_num, base_dir = self.get_dir_ids(image_path)
+        depth_path = f"{base_dir}/depth/{cam_name}/depth_{frame_num}.png"
+        img = imageio.imread(depth_path)
+        img_original = img.copy()
+        img[img == 65535] = 0
+        img = img/ (img.max() * 100)
+        if vis:
+            _, (ax1, ax2,) = plt.subplots(nrows=2, ncols=1)
+            ax1.imshow(img_original)
+            ax2.imshow(img)
+            plt.show()
+        return self.use_depth, img
     def infer_image(self, image_path, vis = False):
+        use_depth_img = True
+        if use_depth_img:
+            return self.get_depth_image(image_path, vis = vis)
         omnidata = self.omnidata
         image_path = Path(image_path)
         
